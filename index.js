@@ -8,7 +8,9 @@ const ObjectId = require("mongodb").ObjectId;
 const stripe = require("stripe")(process.env.STRIPE_SECRET);
 const fileUpload = require("express-fileUpload");
 
-const port = process.env.PORT || 4200;
+
+
+const port = process.env.PORT || 5000;
 
 const serviceAccount = JSON.parse(process.env.FIREBASE_SERVICE_ACCOUNT); //
 
