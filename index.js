@@ -8,8 +8,6 @@ const ObjectId = require("mongodb").ObjectId;
 const stripe = require("stripe")(process.env.STRIPE_SECRET);
 const fileUpload = require("express-fileUpload");
 
-
-
 const port = process.env.PORT || 5000;
 
 const serviceAccount = JSON.parse(process.env.FIREBASE_SERVICE_ACCOUNT); //
@@ -45,6 +43,7 @@ async function run() {
   try {
     await client.connect();
     const database = client.db("doctors_portal");
+    console.log(database)
     const appointmentsCollection = database.collection("appointments");
     const usersCollection = database.collection("users");
     const doctorsCollection = database.collection("doctors");
