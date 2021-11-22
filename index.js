@@ -43,7 +43,6 @@ async function run() {
   try {
     await client.connect();
     const database = client.db("doctors_portal");
-    console.log(database)
     const appointmentsCollection = database.collection("appointments");
     const usersCollection = database.collection("users");
     const doctorsCollection = database.collection("doctors");
@@ -90,11 +89,11 @@ async function run() {
     });
 
     // get all doctors
-    app.get('/doctors', async (req, res) => {
+    app.get("/doctors", async (req, res) => {
       const cursor = doctorsCollection.find({});
       const doctor = await cursor.toArray();
       res.json(doctor);
-    })
+    });
 
     // add a doctor name email and image
     app.post("/doctors", async (req, res) => {
@@ -129,7 +128,6 @@ async function run() {
     app.post("/users", async (req, res) => {
       const user = req.body;
       const result = await usersCollection.insertOne(user);
-      console.log(result);
       res.json(result);
     });
 
@@ -177,7 +175,6 @@ async function run() {
         amount: amount,
         payment_method_types: ["card"],
       });
-      console.log("pamentIntent", paymentIntent);
       res.json({ clientSecret: paymentIntent.client_secret });
     });
   } finally {
